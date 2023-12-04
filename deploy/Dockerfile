@@ -9,7 +9,7 @@ RUN CGO_ENABLED=0 go build -ldflags '-s -w -extldflags "-static"' -o /app/app *.
 # RUN CGO_ENABLED=0 go build -mod=vendor -ldflags '-extldflags "-static"' -o /app/appbin *.go
 
 FROM golang:alpine3.18
-LABEL MAINTAINER LowK
+LABEL MAINTAINER=LowK
 
 # Following commands are for installing CA certs (for proper functioning of HTTPS and other TLS)
 RUN apt-get update && apt-get install -y --no-install-recommends \
