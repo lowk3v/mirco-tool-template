@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"github.com/fatih/color"
 	"github.com/lowk3v/micro-tool-template/internal"
 	"github.com/lowk3v/micro-tool-template/utils"
 	"os"
@@ -24,6 +26,26 @@ func (a *ArgList) Set(value string) error {
 	return nil
 }
 
+func _banner() {
+	// https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=%20dumpsc
+	_, _ = fmt.Fprintf(os.Stderr, "%s by %s\n%s\nCredits: https://github.com/%s/%s\nTwitter: https://twitter.com/%s\n\n",
+		color.HiBlueString(`
+     █████╗ ██████╗ ██████╗ 
+    ██╔══██╗██╔══██╗██╔══██╗
+    ███████║██████╔╝██████╔╝
+    ██╔══██║██╔═══╝ ██╔═══╝ 
+    ██║  ██║██║     ██║     
+    ╚═╝  ╚═╝╚═╝     ╚═╝ `),
+		color.BlueString("@author_name"),
+		"project_description",
+		"author_name",
+		"project_name",
+		"#",
+	)
+	_, _ = fmt.Fprintf(os.Stderr, "Usage of: %s <options> <args>\n", os.Args[0])
+	flag.PrintDefaults()
+}
+
 func _parseFlags() (string, *internal.Options, error) {
 	var configPath string
 	var verbose bool
@@ -35,6 +57,7 @@ func _parseFlags() (string, *internal.Options, error) {
 	flag.BoolVar(&verbose, "v", false, "verbose mode")
 	flag.StringVar(&output, "o", "./output", "output directory")
 	flag.BoolVar(&version, "-version", false, "print version and exit")
+	flag.Usage = _banner
 	flag.Parse()
 
 	// global configurations
