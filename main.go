@@ -27,17 +27,20 @@ func (a *ArgList) Set(value string) error {
 func _parseFlags() (string, *internal.Options, error) {
 	var configPath string
 	var verbose bool
+	var version bool
 	var output string
 
 	// global arguments
 	flag.StringVar(&configPath, "c", "./config.yml", "optional. Path to config file")
 	flag.BoolVar(&verbose, "v", false, "verbose mode")
 	flag.StringVar(&output, "o", "./output", "output directory")
+	flag.BoolVar(&version, "-version", false, "print version and exit")
 	flag.Parse()
 
 	// global configurations
 	options := &internal.Options{
 		Verbose: verbose,
+		Version: version,
 		Output:  output,
 	}
 

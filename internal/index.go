@@ -2,6 +2,7 @@ package internal
 
 type Options struct {
 	Verbose bool
+	Version bool
 	Output  string
 }
 
