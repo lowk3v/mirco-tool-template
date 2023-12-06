@@ -1,11 +1,8 @@
 package log
 
 import (
-	"fmt"
 	"github.com/fatih/color"
 	"github.com/sirupsen/logrus"
-	"runtime"
-	"strings"
 )
 
 type Logger struct {
@@ -21,11 +18,6 @@ type SymbolConfig struct {
 }
 
 func New(level string) *Logger {
-	lvl, err := logrus.ParseLevel(level)
-	if err != nil {
-		lvl = logrus.InfoLevel
-	}
-
 	l := &Logger{
 		Logger: logrus.New(),
 		symbol: SymbolConfig{
@@ -35,15 +27,20 @@ func New(level string) *Logger {
 			Debug:   color.MagentaString("☣"),
 		},
 	}
-	l.SetReportCaller(true)
-	l.SetLevel(lvl)
+	l.SetReportCaller(false)
+	l.SetLevel(level)
 	l.Formatter = &logrus.TextFormatter{
-		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
-			fileParts := strings.Split(f.File, "/")
-			funcParts := strings.Split(f.Function, "/")
-			return fmt.Sprintf("%s:", funcParts[len(funcParts)-1]),
-				fmt.Sprintf("%s:%d", fileParts[len(fileParts)-1], f.Line)
-		},
+		DisableColors:   false,
+		FullTimestamp:   true,
+		TimestampFormat: "2006-01-02 15:04:05",
 	}
 	return l
+}
+
+func (l *Logger) SetLevel(level string) {
+	lvl, err := logrus.ParseLevel(level)
+	if err != nil {
+		lvl = logrus.InfoLevel
+	}
+	l.Logger.SetLevel(lvl)
 }
