@@ -4,12 +4,12 @@ import (
 	"flag"
 	"fmt"
 	"github.com/fatih/color"
-	"github.com/lowk3v/micro-tool-template/internal"
-	"github.com/lowk3v/micro-tool-template/internal/enum"
-	"github.com/lowk3v/micro-tool-template/utils"
+	"github.com/author_name/project_name/internal"
+	"github.com/author_name/project_name/internal/enum"
+	"github.com/author_name/project_name/utils"
 	"os"
 )
-import global "github.com/lowk3v/micro-tool-template/config"
+import global "github.com/author_name/project_name/config"
 
 func __existArg(arg string) bool {
 	args := os.Args[1:]

@@ -2,7 +2,7 @@ package config
 
 import (
 	_ "embed"
-	"github.com/lowk3v/micro-tool-template/pkg/log"
+	"github.com/author_name/project_name/pkg/log"
 	"gopkg.in/yaml.v3"
 	"os"
 )

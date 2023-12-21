@@ -1,8 +1,8 @@
 package internal
 
 import (
-	global "github.com/lowk3v/micro-tool-template/config"
-	"github.com/lowk3v/micro-tool-template/internal/enum"
+	global "github.com/author_name/project_name/config"
+	"github.com/author_name/project_name/internal/enum"
 )
 
 type Options struct {

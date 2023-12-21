@@ -1,4 +1,4 @@
-module github.com/lowk3v/micro-tool-template
+module github.com/author_name/project_name
 
 go 1.20
 
